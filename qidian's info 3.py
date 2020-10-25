@@ -34,7 +34,7 @@ def get_info(url):
 # 程序主入口
 if __name__ == '__main__':
 
-    urls = ['https://www.qidian.com/rank/fengyun?style=1'.format(str(i)) for i in range(1, 5)]
+    urls = ['https://www.qidian.com/rank/fengyun?style=1&page={}'.format(str(i)) for i in range(1, 4)] # TODO
     # 获取所有数据
     for url in urls:
         get_info(url)

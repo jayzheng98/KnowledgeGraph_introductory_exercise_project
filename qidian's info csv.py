@@ -35,7 +35,6 @@ def get_info(url):
 if __name__ == '__main__':
 
     urls = ['https://www.qidian.com/rank/fengyun?style=1&page={}'.format(str(i)) for i in range(1, 6)]
-    #urls = ['https://www.qidian.com/rank/fengyun?style=1' for i in range(1, 6)]
     # 获取所有数据
     for url in urls:
         get_info(url)
@@ -43,7 +42,7 @@ if __name__ == '__main__':
     # 定义表头
     header = ['title', 'author', 'style', 'complete', 'introduce', 'last_update']
     # 创建工作簿
-    csvfile = open('xiaoshuo2.csv', 'w', errors='ignore', newline='')
+    csvfile = open('xiaoshuo.csv', 'w', errors='ignore', newline='')
     sheet = csv.writer(csvfile)
     # 写入表头
     sheet.writerow(header)
