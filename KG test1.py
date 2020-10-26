@@ -1,12 +1,12 @@
-import xlwt        # xlwt模块实现对excel文件的写入
+from py2neo import Graph, Node, Relationship, NodeMatcher, RelationshipMatcher
 import requests
 from lxml import etree
 import time
 
-
+# 创建图
+graph = Graph('http://localhost:7474/', username='neo4j', password='zzy117788')
 # 初始化列表，存入爬虫数据
 all_info_list = []
-
 
 # 定义获取爬虫信息的函数
 def get_info(url):
@@ -30,32 +30,14 @@ def get_info(url):
         # 睡眠1秒
         time.sleep(1)
 
+def CreateNodeByCypher(m_graph, m_query):
+    return m_graph.run(m_query)
 
 # 程序主入口
 if __name__ == '__main__':
 
-    urls = ['https://www.qidian.com/rank/fengyun?style=1&page={}'.format(str(i)) for i in range(1, 4)] # TODO
+    urls = ['https://www.qidian.com/rank/fengyun?style=1&page={}'.format(str(i)) for i in range(1, 6)]
     # 获取所有数据
     for url in urls:
         get_info(url)
 
-    # 定义表头
-    header = ['title', 'author', 'style', 'complete', 'introduce', 'last_update']
-    # 创建工作簿
-    book = xlwt.Workbook(encoding='utf-8')
-    # 创建工作表
-    sheet = book.add_sheet('Sheet1')
-    for h in range(len(header)):
-        # 写入表头
-        sheet.write(0, h, header[h])
-
-    i = 1  # 行数
-    for list in all_info_list:
-        j = 0  # 列数
-        # 写入爬虫数据
-        for data in list:
-            sheet.write(i, j, data)
-            j += 1
-        i += 1
-    # 保存文件
-    book.save('paihang.xls')
