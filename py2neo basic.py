@@ -53,4 +53,8 @@ if __name__ == '__main__':
     #graph.delete(id_5)
 
     # 删除全部
-    #graph.delete_all()
+    # graph.delete_all()
+
+    # py2neo cypher语句
+    # query = 'MATCH (p1:Person {name:"贾宝玉"}),(p2:Person{name:"林黛玉"}),p=shortestpath((p1)-[*..10]-(p2)) RETURN p'
+    # result = g.run(query).data
