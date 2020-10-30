@@ -28,7 +28,7 @@ def get_info(url):
         # 把数据存入列表
         all_info_list.append(info_list)
         # 睡眠1秒
-        time.sleep(1)
+        time.sleep(0.1)
 
 
 # 程序主入口
